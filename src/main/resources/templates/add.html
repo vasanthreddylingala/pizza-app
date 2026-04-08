@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Add or Edit Pizza</title>
+    <style>
+        body { font-family: Arial; margin: 30px; }
+        input, select { width: 100%; padding: 8px; margin: 5px 0; }
+        button { background-color: blue; color: white; padding: 10px; }
+    </style>
+</head>
+<body>
+    <h1>🍕 Pizza Details</h1>
+    <form th:action="@{/save}" th:object="${pizza}" method="post">
+        <input type="hidden" th:field="*{id}" />
+        
+        <label>Pizza Name:</label>
+        <input type="text" th:field="*{name}" required />
+        
+        <label>Size:</label>
+        <select th:field="*{size}">
+            <option value="Small">Small</option>
+            <option value="Medium">Medium</option>
+            <option value="Large">Large</option>
+        </select>
+        
+        <label>Topping:</label>
+        <input type="text" th:field="*{topping}" />
+        
+        <br/><br/>
+        <button type="submit">Save Pizza</button>
+        <a href="/">Cancel</a>
+    </form>
+</body>
+</html>

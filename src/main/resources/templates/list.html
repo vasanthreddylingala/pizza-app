@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>My Pizza Orders</title>
+    <style>
+        body { font-family: Arial; margin: 30px; }
+        table { border-collapse: collapse; width: 100%; }
+        th, td { border: 1px solid #ddd; padding: 8px; text-align: left; }
+        th { background-color: #f2f2f2; }
+        .btn { padding: 5px 10px; text-decoration: none; margin: 2px; display: inline-block; }
+        .add-btn { background-color: green; color: white; padding: 10px; }
+    </style>
+</head>
+<body>
+    <h1>🍕 My Pizza Orders</h1>
+    <a href="/add" class="add-btn">+ Add New Pizza</a>
+    <br/><br/>
+    <table>
+        <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Size</th>
+            <th>Topping</th>
+            <th>Actions</th>
+        </tr>
+        <tr th:each="pizza : ${pizzas}">
+            <td th:text="${pizza.id}">1</td>
+            <td th:text="${pizza.name}">Pepperoni</td>
+            <td th:text="${pizza.size}">Large</td>
+            <td th:text="${pizza.topping}">Extra Cheese</td>
+            <td>
+                <a th:href="@{/edit/{id}(id=${pizza.id})}" class="btn">✏️ Edit</a>
+                <a th:href="@{/delete/{id}(id=${pizza.id})}" class="btn" onclick="return confirm('Delete this pizza?')">🗑️ Delete</a>
+            </td>
+        </tr>
+    </table>
+</body>
+</html>
